@@ -3,6 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housing BBSR | Buy, Sell, Rent</title>
+    <style>
+        :root { --primary: #0052cc; --green: #25D366; --bg: #f0f2f5; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: var(--bg); }
+        
+        /* Header Section */
+        .header { background: var(--primary); color: white; padding: 40px 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 28px; }
+        
+        /* Container */
+        .main-container { max-width: 1000px; margin: auto; padding: 20px; }
+        
+        /* Grid for Listings */
+        .section-title { font-size: 22px; font-weight: bold; margin: 20px 0; color: #333; border-left: 5px solid var(--primary); padding-left: 10px; }
+        .listing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        
+        /* Property Card Style */
+        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 15px; }
+        .price { font-size: 22px; font-weight: bold; color: var(--primary); }
+        .details { font-size: 16px; margin: 10px 0; color: #444; }
+        .location { color: #777; font-size: 14px; margin-bottom: 15px; }
+        
+        /* Buttons */
+        .btn-whatsapp { background: var(--green); color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: block; text-align: center; }
+        
+        /* Post Form Section */
+        .post-box { background: #fff; padding: 30px; border-radius: 15px; margin-top: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid var(--primary); }
+        .post-box h2 { color: var(--primary); margin-top: 0; }
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+        .btn-post { background: var(--primary); color: white; border: none; width: 100%; padding: 15px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Housing BBSR</h1>
+    <p>Odisha's Best Property Destination</p>
+</div>
+
+<div class="main-container">
+    
+    <div class="section-title">Featured Properties in Bhubaneswar</div>
+    <div class="listing-grid">
+        
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=500" alt="House">
+            <div class="card-body">
+                <div class="price">₹55,00,000</div>
+                <div class="details">3 BHK Independent Villa</div>
+                <div class="location">📍 Patia, Bhubaneswar</div>
+                <a href="https://wa.me/918908066833?text=Hi, I am interested in the 3BHK Villa in Patia" class="btn-whatsapp">Chat with Owner</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=500" alt="Apartment">
+            <div class="card-body">
+                <div class="price">₹35,00,000</div>
+                <div class="details">2 BHK Modern Apartment</div>
+                <div class="location">📍 Khandagiri, Bhubaneswar</div>
+                <a href="https://wa.me/918908066833?text=Hi, I am interested in the 2BHK Flat in Khandagiri" class="btn-whatsapp">Chat with Owner</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=500" alt="House">
+            <div class="card-body">
+                <div class="price">₹12,000 /mo</div>
+                <div class="details">Studio Flat for Rent</div>
+                <div class="location">📍 Jaydev Vihar, Bhubaneswar</div>
+                <a href="https://wa.me/918908066833?text=Hi, I want to rent the Studio Flat" class="btn-whatsapp">Chat with Owner</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="post-box">
+        <h2>Post Your Property Ad</h2>
+        <p>Fill details to send your ad to the admin for listing.</p>
+        <input type="text" id="pname" placeholder="Property Name (e.g. 2BHK Flat)">
+        <select id="loc">
+            <option value="">Select Location</option>
+            <option value="Patia">Patia</option>
+            <option value="Khandagiri">Khandagiri</option>
+            <option value="Jaydev Vihar">Jaydev Vihar</option>
+            <option value="Bhubaneswar">Other</option>
+        </select>
+        <input type="number" id="price" placeholder="Total Price or Rent (₹)">
+        <button class="btn-post" onclick="sendWhatsApp()">Submit My Property</button>
+    </div>
+
+</div>
+
+<script>
+    function sendWhatsApp() {
+        let name = document.getElementById('pname').value;
+        let location = document.getElementById('loc').value;
+        let price = document.getElementById('price').value;
+        let myNumber = "918908066833"; // Aapka verified number
+
+        if(name=="" || location=="" || price=="") {
+            alert("Please fill all details correctly.");
+            return;
+        }
+
+        let message = `*NEW AD SUBMISSION*%0A--------------------------%0A*Property:* ${name}%0A*Location:* ${location}%0A*Price:* ₹${price}%0A--------------------------%0APlease add this to the app listings.`;
+        
+        window.open(`https://wa.me/${myNumber}?text=${message}`, '_blank');
+    }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Housing BBSR | Official</title>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: #f0f2f5; text-align: center; }
