@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housing BBSR | Official</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: #f0f2f5; text-align: center; }
+        .header { background-color: #0052cc; color: white; padding: 30px 10px; }
+        .container { padding: 25px; max-width: 450px; margin: 30px auto; background: white; border-radius: 15px; box-shadow: 0px 4px 15px rgba(0,0,0,0.1); }
+        input, select { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+        button { width: 95%; background-color: #25D366; color: white; border: none; padding: 15px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Housing BBSR</h1>
+        <p>Post your property in Odisha</p>
+    </div>
+
+    <div class="container">
+        <h2>Sell or Rent Property</h2>
+        <input type="text" id="pname" placeholder="Property Name (e.g. 2BHK Patia)">
+        <select id="loc">
+            <option value="">Select Location</option>
+            <option value="Patia">Patia</option>
+            <option value="Khandagiri">Khandagiri</option>
+            <option value="Jaydev Vihar">Jaydev Vihar</option>
+            <option value="Bhubaneswar">Other in BBSR</option>
+        </select>
+        <input type="number" id="price" placeholder="Price (₹)">
+        
+        <button onclick="sendWhatsApp()">Post Property Now</button>
+    </div>
+
+    <script>
+        function sendWhatsApp() {
+            let name = document.getElementById('pname').value;
+            let location = document.getElementById('loc').value;
+            let price = document.getElementById('price').value;
+
+            // YAHAN APNA NUMBER DALEIN (Jaise: 919876543210)
+            let myNumber = "918908066833"; 
+
+            if(name=="" || location=="" || price=="") {
+                alert("Please fill all details!");
+                return;
+            }
+
+            let message = `*New Property Listing*%0A*Property:* ${name}%0A*Location:* ${location}%0A*Price:* ₹${price}`;
+            window.open(`https://wa.me/${myNumber}?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
